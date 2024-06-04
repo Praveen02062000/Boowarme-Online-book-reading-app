@@ -1,0 +1,31 @@
+./Books/Modeling Black Hole.pdf,
+Modeling Black Hole.pdf
+Alessandro Fabbr
+./assets/bookposter/modelblackhole-poster.jpg
+
+
+DB ->>>>> TABLES
+
+BOOKSTORE       :   
+FOR BOOK TABLES                   
+(bookid,bookname,bookpath,author,bookposterpath,section,publisheddate)
+
+SECTIONTYPE      :   
+FOR SECTION AND GENER TABLES      
+(sec_id,sec_name,data_created,description)
+
+SECTION_BOOK     :   
+FOR SECTIONID AND BOOKID TABLES   
+(sec_id,book_id)
+
+USERTABLE        :   
+FOR USERTABLE                     
+(username, password, email)
+
+LIBRTABLE        :   
+FOR LINRTABLE                     
+(username, password, email)  
+
+STATUSBOOK_TABLE :   
+FOR STATUSBOOK                    
+(book_id TEXT, user_id TEXT, issue_data TEXT, return_data TEXT, book_status NUMERIC)

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="../static/style/LibDash.css")}}">
+</head>
+<!-- http://localhost:5000/lib/Addbook" -->
+<body>
+    <div class="lib-dash-board">
+        <div class="add-section-pop">
+            <div class="add-section-form">
+                <div class="cancel-con">
+                    <div class="cancel-logo">
+                        <img src="{{url_for('static',filename="./assets/cancel.png")}}" />
+                    </div>
+                </div>
+                <h2>Add Section</h2>
+                <form action="http://localhost:5000/lib/add-sec/" method="post" enctype="multipart/form-data">
+                    <div class="name-sec">
+                        <label for="namesec">Name of the Section</label>
+                        <input type="text" name="namesec"/>
+                    </div>  
+                    <div class="dec-sec">
+                        <label for="decsec">Description of Section</label>
+                        <input type="text" name="decsec"/>
+                    </div>
+                    <div class="img-sec">
+                        <label for="imgsec">Upload the section Image</label>
+                        <input type="file" name="imgsec" id="img-sec">
+                    </div> 
+                   
+                    <div class="btn-sec">
+                        <input class="sec-btn" value="Add-Section" type="submit"/>  
+                    </div>              
+                </form>   
+            </div>
+            <div class="blackscreen"></div>
+        </div>
+        <div class="section-edit-con" >
+            <div class="sec-edit-con-main">
+                <div class="sec-edit-head">
+                    <div class="edit-btn-con">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                    <div class="close-con">
+                        <div class="edit-con-logo">
+                            <img src="{{url_for('static',filename="./assets/cancel.png")}}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="sec-edit-body">
+                    <div class="edit-con">
+                        <form action="/lib/sectionupdate/" class="edit" enctype="multipart/form-data" method="post">
+                            <input type="text" value="" class="sec-id-seter" name="id" style="display: none;" />
+                            <input type="text" value="" class="old_src" name="old_src" style="display: none;" />
+                            <input type="text" placeholder="Edit Title" name="title"/>
+                            <input type="text" placeholder="Edit Description" name="des"/>
+                            <input type="file" name="poster"/>
+                            <button type="submit" class="apply-sec">Apply</button>
+                        </form>
+                    </div>
+                    <div class="delete-sec" style="display: none;">
+                        <form action="/lib/deletesection/" class="delete-sec">
+                            <h3>Do you want delete this section ?</h3>
+                            <div class="btn-con-sec">
+                                <input type="text" value="" class="sec-id-setter" name="id" style="display: none;" />
+                                <button type="submit">Yes</button>
+                                <button class="close-cancel">No</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="sec-blackscreen"></div>
+        </div>
+        <div class="mb-menu-con">
+            <div class="mb-menu-head">
+                <img class="cancel-btn-mb-menu" src="{{url_for('static',filename="../static/assets/cancel.png")}}" alt="">
+            </div>
+            <div class="mb-menu-body">
+                <a href="http://localhost:5000/lib/Addbook/">ADD BOOK</a>
+                <a href="http://localhost:5000/lib/members/">MEMBERS</a>
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="nav-lib-dash">
+            <div class="logo-con-lib-dash">
+                <img src="../static/assets/mainlogo.png" />
+            </div>
+            <div class="mb-menu">
+                <img src="{{url_for('static',filename="../static/assets/menu.png")}}"/>
+            </div>
+            <div class="btn-lib-dash">
+                <a href="http://localhost:5000/lib/Addbook/">ADD BOOK</a>
+                <a href="http://localhost:5000/lib/members">MEMBERS</a>
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="great-con">
+            <div class="mem">
+                <h1>Welcome Praveen kumar</h1>
+            </div>
+            <div class="date-time">
+                <h3>Date {{timerData["date"]}}</h3>
+                <h3>{{timerData["day"].upper()}}</h3>
+            </div>
+        </div>
+        <div class="user-con">
+            <div class="user-head">
+                <div class="user-title">
+                    <h2>User's</h2>
+                </div>
+            </div>
+            <div class="user-body">
+                {% for i in mem %}
+                    <div class="user-con-body">
+                        <div class="img-con-user">
+                        <img src="{{url_for('static',filename='../static/assets/account.png')}}"/>
+                        </div>
+                        
+                        <p>{{i[1]}}</p>
+                        <button><a class="view-user" href="http://localhost:5000/lib/userview/?id={{i[1]}}&code={{i[0]}}">View</a></button>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <h2>Sections</h2>
+            </div>
+            <div class="section-body">
+                {% for i in book %}
+                    <div class="section-con" >
+                        <div class="menu-btn">
+                            <img src="{{url_for('static',filename = "./assets/threedot.png")}}" data="{{i["id"]}}" class="edit-btn" title="edit"/>
+                        </div>
+                        <img src="{{url_for('static',filename=i["img"])}}" title="{{i["title"]}}"/>
+                        <h6>{{i["title"]}}</h6>
+                    </div>
+                {% endfor %}
+                <div class="add-section" title="Add Section">
+                    <img src="{{url_for('static',filename="./assets/add.png")}}"/>
+                    <h3>Add Section</h3>
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+    <script src="{{url_for('static',filename="../static/scripts/LibDash.js")}}"></script>
+</body>
+</html>

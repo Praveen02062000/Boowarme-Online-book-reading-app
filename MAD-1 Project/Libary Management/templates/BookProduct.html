@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='./style/page.css')}}">
+</head>
+<body style="display: flex;flex-direction: column; align-items: center;">
+    <!-- {% if paymentSuccess == "true" %}
+        <div class="paymentsuccess-con">
+            <h2>Your payment is completed</h2>
+            <button>Done</button>
+        </div>
+    {% endif %} -->
+    <div class="header-book">
+        
+        <div class="back-con">
+           <a href="/userdash"> <img src="{{url_for('static',filename='./assets/back.png')}}"/></a>
+            <h4>{{Data[1]}}</h4>
+        </div>
+    </div>
+    <div class="body-book">
+        <div class="img-con">
+            <img src="{{url_for('static',filename=Data[4])}}"/>
+        </div>
+        <div class="details-books">
+            <h1>{{Data[1]}}</h1>
+            <div class="book-details">
+                <p>Author : {{Data[3]}}</p>
+                <p>Published data : {{Data[6]}}</p>
+            </div>
+        </div>
+        <div class="btn-books">
+            <button><a class="cart" href="http://localhost:5000/user/addcart/?id={{Data[0]}}&bookname={{Data[1]}}">Put in Bag</a></button>
+            <button><a class="payment" href="/user/payment/?id={{Data[0]}}&title={{Data[1]}}">Purchase Book</a></button>
+        </div>    
+    </div>
+    <div class="review-con">
+        <div class="review-title">
+            <h3>Book Reviews</h3>
+        </div>
+        <div class="inner-review-con">
+            <div class="input-review-con">
+                <form action="/bookdata/review/?id={{Data[0]}}" method="post">
+                    <textarea name="review" id="review" placeholder="Say anything about book"></textarea>
+                    <!-- <input type="text" name="review" class="review-input"/> -->
+                    <div class="rating-con-result">
+                        <select class="rating-star" name="rating-star">
+                            <option disabled selected>Select the rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="submit" value="Submit"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="review-result">
+            {% for i in review %}
+                <div class="rev">
+                    <div class="rev-head">
+                        <div class="rev-account">
+                            <div class="rating-img-con"><img src="{{url_for('static',filename="./assets/account.png")}}"/></div>
+                            
+                            <h4>{{i[6].split("@")[0]}}</h4>
+                        </div>
+                        <p>{{i[6]}}</p>
+                    </div>
+                    <div class="rev-result">
+                        {{i[4]}}
+                    </div>
+                    <div class="rev-foot">
+                        <div class="rating">
+                            
+                            <img src="{{url_for('static',filename="./assets/star.png")}}" alt="">
+                            <h5>{{i[3]}} rating</h5>
+                        </div>
+                        <h5>updated : {{i[5]}}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me/userview</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="./style/page.css")}}">
+</head>
+<body>
+    <div class="main-user">
+        <div class="main-user-head">
+            <h3><a href="/lib/dashlib">Back</a></h3>
+        </div>
+        <div class="main-user-body">
+            <div class="user-acc-details">
+                <div class="img-con">
+                    <img src="{{url_for('static',filename="./assets/account.png")}}"/>
+                </div>
+                <div class="details-con">
+                    <table>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>BookCount</th>
+                        </tr>
+                        <tr>
+                            {% for i in detail["user"][0] %}
+                                <td>{{i}}</td>
+                            {% endfor %}
+                        </tr>
+                    </table>
+                   
+                </div>
+            </div>
+            <div class="history-book">
+                <div class="history-book-head">
+                    <h3>Orders</h3>
+                </div>
+                <div class="history-book-body">
+                    {% if detail["book"] != [] %}
+                        {% for i in detail["book"] %}
+                            <div class="book-detail-con" >
+                                {% for j in detail["bookdetail"] %}
+                                    {% if j[0] == i[0] %}
+                                        <div class="details-book">
+                                            <h3>{{j[1]}}</h3>
+                                            <label>Author : {{j[3]}}</label>
+                                        </div>
+                                        <div class="book-img-con">
+                                            <div>
+                                                <img src="{{url_for('static',filename=j[4])}}"/>
+                                            </div>
+                                            <div class="date-con">
+                                                <div class="issue-date-con">
+                                                    <h3>Issue Date</h3>
+                                                    <label>{{i[2]}}</label>
+                                                </div>
+                                                <div class="issue-date-con">
+                                                    <h3>Return Date</h3>
+                                                    <label>{{i[3]}}</label>
+                                                </div>
+                                                <div class="status-con">
+                                                    {% if i[4] == 1 %}
+                                                        <button type="button" class="not-return"><a href="/lib/userbook/remove/?id={{detail["user"][0][0]}}&bookid={{i[0]}}&issD={{i[2]}}&retD={{i[3]}}">Not Returned</a></button>
+                                                    {% else %}
+                                                        <button type="button" class="returned" disabled><a >Returned</a></button>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                            <div class="empty-con">
+                                <h2>No book's Barrowed!</h2>
+                            </div>
+                    {% endif %}
+                
+                    
+                </div>
+            </div>
+            <div class="userreview-book">
+                <div class="userreview-head">
+                    <h3>User Review</h3>
+                </div>
+                <div class="userreview-body">
+                    {% if detail["review"]|length > 0 %}
+                        {% for rev in detail["review"] %}
+                            <div class="review-con-lib">
+                               
+                                    {% for book in detail["bookdetail"] %}
+
+                                        {% if rev[1] == book[0] %}
+                                            <div class="review-con-head-lib">
+                                                <img src="{{url_for("static",filename=book[4])}}">
+                                                <h4>Review for {{book[1]}}</h4>
+                                            </div>
+                                        {% endif %}
+                                    
+                                    {% endfor %}
+                                
+                                <div class="review-lib-body">
+                                    <div class="sub-rev">
+                                        <h3>{{rev[4]}}</h3>
+                                        <div class="rating-review-lib">
+                                            <img src="{{url_for("static",filename="./assets/star.png")}}">
+                                            <h4>{{rev[3]}} Rating</h4>
+                                        </div>
+                                    </div>
+                                    <p>Updated {{rev[5]}}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h4 style="text-align: center;">No review from this account</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

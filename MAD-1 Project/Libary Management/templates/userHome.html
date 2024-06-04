@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me/home</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="./style/Home.css")}}">
+</head>
+<body>
+    <div class="home-con">
+        <div class="home-head">
+            <div class="home-logo-con">
+                <img src="{{url_for('static',filename="./assets/mainlogo.png")}}" />
+            </div>
+            <div class="menu-logo">
+                <img src="{{url_for('static',filename='./assets/menu.png')}}"/>
+            </div>
+            
+        </div>
+        <div class="nav-con-home">
+            <div class="nav-head">
+                <div class="cancel-btn-nav" title="back">
+                    <img src="{{url_for('static',filename="./assets/cancel.png")}}"/>
+                </div>
+            </div>
+            <div class="nav-btns">
+                <div class="account-btn-con">
+                    <img src="{{url_for('static',filename="./assets/account.png")}}"/>
+                    <h4><a href="/user/book-download/">BOOKS FOR DOWNLOAD</a></h4>
+                </div>
+                <div class="barrow-btn-con">
+                    <img src="{{url_for('static',filename="./assets/book.png")}}" id="book-btn"/>
+                    <h4><a href="http://localhost:5000/user/Barrowed/">BARROWED BOOKS</a></h4>
+                </div>
+                <div class="return-btn-con">
+                    <img src="{{url_for('static',filename="./assets/book.png")}}"  id="book-btn"/>
+                    <h4><a href="/user/returnbook/">RETURNED BOOKS</a></h4>
+                </div>
+                <div class="setting-btn-con">
+                    <img src="{{url_for('static',filename="./assets/book.png")}}" id="book-btn"/>
+                    <h4><a href="http://localhost:5000/user/View All/">VIEW ALL</a></h4>
+                </div>
+                <div class="logout-btn-con">
+                    <img src="{{url_for('static',filename="./assets/logout.png")}}"/>
+                    <h4><a href="http://localhost:5000/user/logout/">LOGOUT</a></h4>
+                </div>
+                
+            </div>
+        </div>
+        <!-- <div class="sub-head-home">
+            <div class="gener-con">
+                <div class="gener-title-con">
+                    <h3 class="title-final">Select section</h3>
+                    <div class="drop-arrow-con">
+                        <img class="down-arw" src="{{url_for('static',filename="./assets/dropdown.png")}}"/>
+                        <img class="up-arw" src="{{url_for('static',filename="./assets/dropdown.png")}}"/>
+                    </div>
+                </div>
+                <div class="gener-select">
+                    {% for key, value in mainbookdata.items() %}
+                        <div>
+                            <p>{{key}}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="input-search-con">
+                <div class="search-con">
+                    <form>
+                        <input type="text" placeholder="Search (eg-Gener, Author...)"/>
+                    </form>
+                    <div class="search-logo-con">
+                        <img src="{{url_for('static',filename="./assets/searchlogo.png")}}"/>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="book-count">
+            <div class="user-welcome">
+                <h3>Welcome {{user[0]}}</h3>
+            </div>
+            <div class="update">
+                <img src="{{url_for("static",filename="./assets/bookani.gif")}}">
+                <h4>Total books in cart {{user[1]}}</h4>
+            </div>
+        </div>
+        <div class="user-book-con">
+            {% for key,value in mainbookdata.items() %}
+                <div class="section-book" id={{key}}>
+                    <div class="section-head" title="{{key}}">
+                        <h1>{{key.upper()}}</h1>
+                    </div>
+                    <div class="section-body">
+                        {% for con in value %}
+                            <div class="book-item" title="{{con[1]}}">
+                                <img 
+                                 src={{url_for('static',filename=con[4])}}
+                                />
+                                <div class="book-detail">
+                                    <h2>{{con[1]}}</h2>
+                                    <div class="author-detail">
+                                        <p>Author : <span>{{con[3]}}</span></p>
+                                        <p>published data : <span>{{con[6]}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="btn-container" title="View {{con[1]}}">
+                                    <button><a href="/bookdata/?id={{con[0]}}&code={{"false"}}">Views</a></button>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{url_for('static',filename="./scripts/Home.js")}}"></script>
+</body>
+</html>

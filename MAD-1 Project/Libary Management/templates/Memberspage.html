@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="../static/style/LibDash.css")}}">
+</head>
+<body>
+    <div class="lib-dash-board">
+        <div class="mb-menu-con">
+            <div class="mb-menu-head">
+                <img class="cancel-btn-mb-menu" src="{{url_for('static',filename="../static/assets/cancel.png")}}" alt="">
+            </div>
+            <div class="mb-menu-body">
+                <a href="/lib/dashlib">DASHBOARD</a>
+                <a href="http://localhost:5000/lib/Addbook/">ADD BOOK</a>
+                <!-- <a href="http://localhost:5000/lib/members/">MEMBERS</a> -->
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="nav-lib-dash">
+            <div class="logo-con-lib-dash">
+                <img src="{{url_for('static',filename="../static/assets/mainlogo.png")}}" />
+            </div>
+            <div class="mb-menu">
+                <img src="{{url_for('static',filename="../static/assets/menu.png")}}"/>
+            </div>
+            <div class="btn-lib-dash">
+                <a href="/lib/dashlib">DASHBOARD</a>
+                <a href="http://localhost:5000/lib/Addbook/">ADD BOOK</a>
+                <!-- <a href="">MEMBERS</a> -->
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="main-body-mem">
+            <div class="main-body-mem-head">
+                <h3>users</h3>
+            </div>
+            <div class="main-body-result">
+                {% if data != None %}
+                    {% for values in data %}
+                    
+                            <div class="member-con" >
+                                <img src="{{url_for('static',filename="../static/assets/male.png")}}"/>
+                                <div class="content-mem">
+                                    <h4>{{values[1]}}</h4>
+                                    <p>{{values[3]}}</p>
+                                </div>
+                                <div class="btn-mem">
+                                    <button class="view-btn-mem"><a href="/lib/userview/?id={{values[1]}}&code={{values[0]}}">View History</a></button>
+                                    <button class="delete-btn-mem"><a href="/lib/members/remove/?id={{values[0]}}">Remove</a></button>
+                                </div>
+                            </div>
+            
+                    {% endfor %}
+            
+                {% else %}
+                        <h1>hello</h1>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{url_for('static',filename="../static/scripts/Members.js")}}"></script>
+    
+</body>
+</html>

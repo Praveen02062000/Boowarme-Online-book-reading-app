@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me/ViewAll</title>
+    <link rel="stylesheet" href="{{url_for("static",filename="./style/viewbook.css")}}">
+    <!-- <link rel="stylesheet" href="{{url_for('static',filename="./style/Home.css")}}"> -->
+</head>
+<body>
+    <div class="viewbook-con">
+        <div class="viewbook-head">
+            <div class="back-btn">
+                <h3><a href="/userdash">Back</a></h3>
+            </div>
+            <div class="search-con">
+                <form action="/user/view All/search">
+                    <input type="text"name="value" placeholder="Search the books" />
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="viewbook-body">
+            {% for i in book.keys() %}
+                {% for j in book[i] %}
+                    <div class="book-item" title="{{j[1]}}">
+                        <img 
+                        src={{url_for('static',filename=j[4])}}
+                        />
+                        <div class="book-detail">
+                            <h3>{{j[1]}}</h3>
+                            <div class="author-detail">
+                                <p>Author : <span>{{j[3]}}</span></p>
+                                <p>published data : <span>{{j[6]}}</span></p>
+                                <p>Section : <span>{{i}}</span></p>
+                            </div>
+                        </div>
+                        <div class="btn-container" title="View {{j[1]}}">
+                            <button><a href="/bookdata/?id={{j[0]}}">Views</a></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            
+        </div>
+    </div>
+    
+</body>
+</html>

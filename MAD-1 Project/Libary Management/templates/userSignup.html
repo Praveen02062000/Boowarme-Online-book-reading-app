@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='./style/login.css')}}">
+</head>
+<body>
+    <div class="sign-main">
+        <div class="sign-head">
+            <img src="{{url_for('static',filename='./assets/mainlogo.png')}}"/>
+        </div>
+        <div class="form-con">
+            <form action="http://localhost:5000/studentadd" method="post">
+                <h3>signup</h3>
+                <div class="username-con-sign">
+                    <input type="text" placeholder="USERNAME" name="user"/>
+                </div>
+                <div class="email-con-sign">
+                    <input type="email" placeholder="E-MAIL" name="email"/>
+                </div>
+                <div class="password-con-sign">
+                    <input type="password" placeholder="PASSWORD" name="pass" class="pass-sign"/>
+                    <div class="eye-con" id="eye-con-sign-pass">
+                        <img class="sign-notopen" src="{{url_for('static',filename='./assets/before.png')}}"/>
+                        <img class="sign-open" src="{{url_for('static',filename='./assets/open.gif')}}"/>
+                    </div>
+                </div>
+                <div class="repassword-con-sign">
+                    <input type="password" placeholder="RE-PASSWORD" name="repass" class="repass-sign"/>
+                    <div class="eye-con" id="eye-con-sign-repass">
+                        <img class="sign-notopen-re" src="{{url_for('static',filename='./assets/before.png')}}"/>
+                        <img class="sign-open-re" src="{{url_for('static',filename='./assets/open.gif')}}"/>
+                    </div>
+                </div>
+                <div class="sign-btn-con">
+                    <button>SIGNUP</button>
+                </div>
+            </form>
+        </div>
+        <div class="login-link-con">
+            <p>If you already have account - <a href="/login">Click Here</a></p>
+        </div>
+    </div>
+
+
+
+    <script src="{{url_for('static',filename='./scripts/sign.js')}}"></script>
+    
+</body>
+</html>

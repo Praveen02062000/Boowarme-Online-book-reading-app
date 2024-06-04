@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="../static/style/login.css">
+
+</head>
+<body>
+    <div class="login-con-lib">
+        <div class="head-lib">
+            <div class="main-logo">
+                <a href="/"><img src="../static/assets/mainlogo.png" alt="mainlogo"></a>
+            </div>
+           
+        </div>
+        <!-- <div class="lib-login-img">
+            <img src="../static/assets/lib-login-img.jpg" alt="login">
+        </div> -->
+        <div class="lib-login-form">
+            <form action="http://localhost:5000/libloginvalidation/" method="post">
+                <div class="form-title-lib">
+                    <h2>Librarian Login</h2>
+                </div>
+                <div class="form-con-lib">
+                    <!-- <div class="username-con-lib">
+                        <input type="text" name="usernamelib" id="username-lib" placeholder="USERNAME">
+                    </div>
+                    <div class="password-con-lib">
+                        <input type="password" class="pass" name="passwordlib" id="password-lib" placeholder="PASSWORD">
+                        <div class="eye-con-lib">
+                            <img class="notopen" src="{{url_for('static',filename='./assets/before.png')}}"/>
+                            <img class="open" src="{{url_for('static',filename='./assets/open.gif')}}"/>
+                        </div>
+                    </div> -->
+                    {% if status["status"] == "user-err" %}
+                        <div class="username-con-lib">
+                            <input type="text" placeholder="USERNAME NOT FOUNDED" name="user" id="username-lib" style="border:1px solid red"/>   
+                        </div>
+                    {% else %}
+                        <div class="username-con-lib">
+                            <input type="text" placeholder="USERNAME" name="user" id="username-lib"/>
+                        </div>
+                    {% endif %}
+                    {% if status["status"] == "password-err" %}
+                        <div class="password-con-lib">
+                            <input type="password" placeholder="INCORRECT PASSWORD" name="pass" class="pass" id="password-lib"  style="border:1px solid red"  />
+                            <div class="eye-con-lib">
+                                <img class="notopen" src="{{url_for('static',filename='./assets/before.png')}}"/>
+                                <img class="open" src="{{url_for('static',filename='./assets/open.gif')}}"/>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="password-con-lib">
+                            <input type="password" placeholder="PASSWORD" name="pass" class="pass" id="password-lib" />
+                            <div class="eye-con-lib">
+                                <img class="notopen" src="{{url_for('static',filename='./assets/before.png')}}"/>
+                                <img class="open" src="{{url_for('static',filename='./assets/open.gif')}}"/>
+                            </div>
+                        </div>
+                    {% endif %}   
+                    <div class="login-btn-con-lib">
+                        <button type="submit">LOGIN</button>
+                    </div>
+                </div>
+               
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{{url_for('static',filename="./scripts/Liblogin.js")}}"></script>
+</body>
+</html>

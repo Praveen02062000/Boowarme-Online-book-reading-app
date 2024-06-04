@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="../static/style/LibDash.css")}}">
+</head>
+<body>
+    <div class="addbook-con">
+        <div class="mb-menu-con">
+            <div class="mb-menu-head">
+                <img class="cancel-btn-mb-menu" src="{{url_for('static',filename="../static/assets/cancel.png")}}" alt="">
+            </div>
+            <div class="mb-menu-body">
+                <a href="/lib/dashlib">DASHBOARD</a>
+                <a href="/lib/members">MEMBERS</a>
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="nav-lib-dash">
+            <div class="logo-con-lib-dash">
+                <img src="{{url_for('static', filename="../static/assets/mainlogo.png")}}" />
+            </div>
+            <div class="mb-menu">
+                <img src="{{url_for('static',filename="../static/assets/menu.png")}}"/>
+            </div>
+            <div class="btn-lib-dash">
+                <a href="/lib/dashlib">DASHBOARD</a>
+                <a href="/lib/members">MEMBERS</a>
+                <a href="/lib/View All/">TOTAL BOOK</a>
+                <a href="/lib/logout">LOGOUT</a>
+            </div>
+        </div>
+        <div class="main-add-con">
+            <div class="logo-con-add">
+                <img src="{{url_for('static', filename="../static/assets/mainlogo.png")}}" alt="mainlogo">
+            </div>
+            <div class="title-con-add">
+                <h2>Add New Book</h2>
+            </div>
+            <div class="add-form">
+                <form action="http://localhost:5000/lib/addbook/newbook" enctype="multipart/form-data" method="post">
+                    <div class="book-name-con">
+                        <label for="book-name">
+                            Enter the Bookname 
+                        </label>
+                        <input type="text" name="book-name" id="book-name" />
+                    </div>
+                    <div class="book-author-con">
+                        <label for="book-author">
+                            Name of the Author 
+                        </label>
+                        <input type="text" name="book-author" id="book-author" />
+                    </div>
+                    <div class="book-gener-con">
+                        <label for="book-gener">
+                            Enter the Book Gener 
+                        </label>
+                        <input type="text" name="book-gener" id="book-gener" />
+                    </div>
+                    <div class="book-date-con">
+                        <label for="book-date">
+                            Enter the Book published date
+                        </label>
+                        <input type="date" name="book-date" id="book-date" />
+                    </div>
+                    <div class="book-poster-con">
+                        <div>
+                            <label for="poster">Upload  the Book Poster</label>
+                            <input type="file" name="poster" id="poster">
+                        </div>
+                        <div class="book-pdf-con">
+                            <label for="file-pdf">Upload the Book</label>
+                            <input type="file" name="file-pdf" id="book-gener" />
+                        </div>
+                    </div>
+                    
+
+                    <div class="btn-add">
+                        <button type="submit">ADD BOOK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="{{url_for('static',filename="../static/scripts/Addbook.js")}}"></script>
+    
+</body>
+</html>

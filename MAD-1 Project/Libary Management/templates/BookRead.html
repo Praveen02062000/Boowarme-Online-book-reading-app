@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me/Read</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="./style/page.css")}}" />
+</head>
+<body>
+    <div class="bookread-con">
+        <div class="bookread-head">
+            <a href="/user/Barrowed/">
+                <div class="back-btn" title="back">
+                    <img src="{{url_for('static',filename="./assets/back.png")}}"/>     
+                </div>
+            </a>
+            <div class="img-con">
+                <img src="{{url_for('static',filename=BookData[0][4])}}"/>
+            </div>
+            <div class="book-title">
+                <h2>{{BookData[0][1]}}</h2>
+            </div>
+        </div>
+        <div class="bookread-body">
+            <embed class="main-frame" src="{{url_for('static',filename=BookData[0][2])}}#toolbar=0" />
+        </div>
+        
+    </div>
+    <script src="{{url_for('static',filename="scripts/Book.js")}}"></script>
+</body>
+</html>

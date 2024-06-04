@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me download</title>
+    <link rel="stylesheet" href="{{url_for("static",filename="./style/viewbook.css")}}">
+</head>
+<body>
+    <div class="viewbook-con">
+        <div class="viewbook-head">
+            <div class="back-btn">
+                <h3><a href="/userdash">Back</a></h3>
+            </div>
+        </div>
+        <div class="viewbook-body">
+            {% if datas|length > 0 %}
+                {% for i in datas.keys() %}
+                    {% for j in datas[i] %}
+                        <div class="book-item" title="{{j[1]}}">
+                            <img 
+                            src={{url_for('static',filename=j[4])}}
+                            />
+                            <div class="book-detail">
+                                <h3>{{j[1]}}</h3>
+                                <div class="author-detail">
+                                    <p>Author : <span>{{j[3]}}</span></p>
+                                    <p>published data : <span>{{j[6]}}</span></p>
+                                    <p>Section : <span>{{j[5]}}</span></p>
+                                </div>
+                            </div>
+                            <div class="btn-container" title="Download {{j[1]}}">
+                                <button ><a download href="{{url_for('static',filename=j[2])}}">Download</a></button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% else %}
+                <h3>No Downloads</h3>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

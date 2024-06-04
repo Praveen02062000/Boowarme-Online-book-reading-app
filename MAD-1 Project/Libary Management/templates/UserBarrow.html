@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me/Barrowed</title>
+    <link rel="stylesheet" href="{{url_for('static',filename="./style/page.css")}}">
+
+</head>
+<body>
+    <div class="main-barrow">
+        <div class="bar-head">
+            <h3><a href="/userdash">Back</a></h3>
+        </div>
+        <div class="bar-body">
+            <div class="bar-body-head">
+                <h2>My Books</h2>
+            </div>
+            <div class="bar-body-con">
+                {% for bookid in barrowData.keys() %}
+                    {% if barrowData[bookid][0][4] == 1 %}
+                        <div class="my-book-con" title="{{barrowData[bookid][1][1]}}">
+                            <div class="book-poster">
+                                <img src="{{url_for('static',filename=barrowData[bookid][1][4])}}"/>
+                            </div>
+                            <div class="side-div">
+                                <div class="details">
+                                    <h2>{{barrowData[bookid][1][1]}}</h2>
+                                </div>
+                                <div class="return-date-con">
+                                    <p>Issuse date : {{barrowData[bookid][0][2]}}</p>
+                                    <p>Return date : {{barrowData[bookid][0][3]}}</p>
+                                </div>
+                                <div class="book-btn">
+                                    <button><a href="http://localhost:5000/user/barrow/bookread/?id={{barrowData[bookid][0][0]}}">Read Book</a></button>
+                                    <button><a href="/user/Barrowed/return?bookid={{bookid}}">Return Book</a></button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                <div class="my-book-add" title="add to bag">
+                    <a href="/user/View All/" class="my-book-add-ac">
+                        <div class="add-img">
+                             <img src="{{url_for('static',filename="./assets/add.png")}}" /> 
+                        </div>
+                        <div class="details">
+                            <h2>Add to bag</h2>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

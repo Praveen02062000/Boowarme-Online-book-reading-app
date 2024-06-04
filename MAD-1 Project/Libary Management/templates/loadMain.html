@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BooWoR -me</title>
+    <link rel="stylesheet" href="../static/style/load.css">
+</head>
+<body>
+    <div class="load-con">
+        <div class="logo-con">
+            <div class="load-circle"></div>
+        </div>
+        <div class="logo-up-con">
+            <img src="../static/assets/mainlogo.png"/>
+        </div>
+        <form action="http://localhost:5000/startcheck" method="post">
+            <div class="main-load-con">
+                <div class="select-load-con">
+                    <select name="user-select">
+                        <option disabled>Select user type</option>
+                        <option >Students/users</option>
+                        <option >Libarain</option>
+                    </select>
+                </div>
+                <div class="start-btn">
+                    <button>Start</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</body>
+</html>

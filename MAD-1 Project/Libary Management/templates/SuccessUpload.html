@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>success-NewBook</title>
+    <link rel="stylesheet" href="{{url_for("static",filename="/style/style.css")}}">
+</head>
+<body>
+    <div class="success-con">
+         <div class="success-head">
+         </div>
+         <div class="success-body">
+            <img src="{{url_for("static",filename=bookdatas[1])}}"/>
+            {% if bookdatas[0] == 1 %}
+                <h3>New Book Added successfully {{bookdatas[2]}}</h3>
+            {% else %}
+                <h3>New Book Not Added! {{bookdatas[2]}}</h3>
+            {% endif %}
+            <button><a href="/lib/dashlib">Continue</a></button>
+         </div>   
+    </div>
+</body>
+</html>
